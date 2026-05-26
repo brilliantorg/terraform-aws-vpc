@@ -5,7 +5,7 @@ on:
 
 jobs:
   stale:
-    runs-on: ubuntu-latest
+    runs-on: brill-runner-latest-k8s
     steps:
       - uses: actions/stale@v6
         with:

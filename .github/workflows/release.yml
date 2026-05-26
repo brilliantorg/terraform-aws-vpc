@@ -15,7 +15,7 @@ on:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: brill-runner-latest-k8s
     # Skip running release workflow on forks
     if: github.repository_owner == 'terraform-aws-modules'
     steps:
