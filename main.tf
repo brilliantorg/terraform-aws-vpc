@@ -1084,7 +1084,7 @@ resource "aws_nat_gateway" "this" {
 }
 
 resource "aws_route" "private_nat_gateway" {
-  count = local.create_vpc && var.enable_nat_gateway ? local.nat_gateway_count : 0
+  count = local.create_vpc && var.enable_nat_gateway && var.create_private_nat_gateway_route ? local.nat_gateway_count : 0
 
   route_table_id         = element(aws_route_table.private[*].id, count.index)
   destination_cidr_block = var.nat_gateway_destination_cidr_block
@@ -1096,7 +1096,7 @@ resource "aws_route" "private_nat_gateway" {
 }
 
 resource "aws_route" "private_dns64_nat_gateway" {
-  count = local.create_vpc && var.enable_nat_gateway && var.enable_ipv6 && var.private_subnet_enable_dns64 ? local.nat_gateway_count : 0
+  count = local.create_vpc && var.enable_nat_gateway && var.create_private_nat_gateway_route && var.enable_ipv6 && var.private_subnet_enable_dns64 ? local.nat_gateway_count : 0
 
   route_table_id              = element(aws_route_table.private[*].id, count.index)
   destination_ipv6_cidr_block = "64:ff9b::/96"

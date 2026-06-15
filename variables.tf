@@ -1180,6 +1180,12 @@ variable "nat_gateway_destination_cidr_block" {
   default     = "0.0.0.0/0"
 }
 
+variable "create_private_nat_gateway_route" {
+  description = "Controls whether the module manages the private subnets' default route (0.0.0.0/0 and the dns64 ::/96 route) to the NAT Gateways. Set to false to let the caller own these routes — e.g. to flip the default route between the NAT Gateways and an alternative NAT instance. NAT Gateways themselves are still created when enable_nat_gateway is true."
+  type        = bool
+  default     = true
+}
+
 variable "single_nat_gateway" {
   description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
   type        = bool
